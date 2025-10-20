@@ -7,7 +7,7 @@ import userPlace from "../assets/user.png";
 function LinkNav() {
   return (
     <Navbar expand="lg" className="bg-white py-0 shadow-sm">
-      <Container>
+      <Container className="myContainer">
         <Navbar.Brand href="#">
           <img src={logo} width="30" height="30" className="d-inline-block align-top logo" alt="logo" />
         </Navbar.Brand>
