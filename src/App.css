@@ -1,0 +1,110 @@
+.logo {
+  fill: #0a66c2 !important;
+}
+.linkColor {
+  color: rgb(83, 83, 83);
+  text-decoration: none;
+}
+.linkColor:hover {
+  color: black;
+}
+.pNav {
+  font-size: 0.75rem;
+  margin: 0;
+}
+.nav-link {
+  padding: 0 !important;
+}
+.searchIcon {
+  position: absolute;
+  z-index: 999;
+  left: 33px;
+}
+.inputPad {
+  padding-left: 35px !important;
+  font-size: 14px !important;
+}
+.avatarProfile {
+  top: 100px;
+  left: 25px;
+}
+.badgeProfile {
+  border: 1px solid #0a66c2;
+  border-style: dashed !important;
+  cursor: pointer;
+}
+.myBlue {
+  color: #0a66c2;
+}
+
+.badgeCheck {
+  fill: #0a66c2;
+  stroke-width: 14px;
+}
+.text-primary {
+  color: #0a66c2 !important;
+}
+.circleButton {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 50%;
+  color: #0a66c2;
+  transition: all 0.2s ease;
+}
+.circleButton:hover {
+  color: #00366d;
+}
+.editButton {
+  top: -55px;
+  right: 0;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 50%;
+  color: #2e2e2e;
+  transition: all 0.2s ease;
+}
+.editButton:hover {
+  background-color: rgb(212, 212, 212);
+
+  transition: all 0.2s ease;
+}
+a:hover {
+  text-decoration: underline !important;
+}
+
+.buttonFill {
+  background-color: #0a66c2;
+  font-weight: bold;
+}
+.buttonFill:hover {
+  background-color: #014c97;
+  font-weight: bold;
+}
+.buttonOut {
+  background-color: #ffffff;
+  color: #0a66c2;
+  border: 1px solid #0a66c2;
+  font-weight: bold;
+}
+.buttonOut:hover {
+  background-color: #e7f3ff;
+  color: #003f7e;
+  font-weight: bold;
+  border: 1px solid #003f7e;
+}
+.buttonOutGrey {
+  background-color: #ffffff;
+  color: #727272;
+  border: 1px solid #727272;
+  font-weight: bold;
+}
+.buttonOutGrey:hover {
+  background-color: #e6e6e6;
+  color: #000000;
+  font-weight: bold;
+  border: 1px solid #000000;
+}
