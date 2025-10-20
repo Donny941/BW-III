@@ -43,10 +43,10 @@ function MainProfile() {
           </a>
         </small>
         <div className="mt-3 d-flex gap-2">
-          <Button className="buttonFill  px-3 rounded-pill text-bold">Open to</Button>
-          <Button className="buttonOut  px-3 rounded-pill text-bold">Add profile section</Button>
-          <Button className="buttonOut  px-3 rounded-pill text-bold">Enhance profile</Button>
-          <Button className="buttonOutGrey px-3 rounded-pill text-bold">Resources</Button>
+          <Button className="buttonFill  px-3 rounded-pill text-bold" size='sm'>Open to</Button>
+          <Button className="buttonOut  px-3 rounded-pill text-bold" size='sm'>Add profile section</Button>
+          <Button className="buttonOut  px-3 rounded-pill text-bold" size='sm'>Enhance profile</Button>
+          <Button className="buttonOutGrey px-3 rounded-pill text-bold" size='sm'>Resources</Button>
         </div>
       </Card.Body>
     </Card>
