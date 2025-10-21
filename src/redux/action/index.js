@@ -3,6 +3,8 @@
 // const URL = import.meta.env.URL;
 export const TAKE_PROFILE = "TAKE_PROFILE";
 export const TAKE_ALL_PROFILES = "TAKE_ALL_PROFILES";
+export const TAKE_EXPERIENCES = "TAKE_EXPERIENCES";
+export const POST_EXPERIENCES = "POST_EXPERIENCES";
 // const URL = "https://striveschool-api.herokuapp.com/api/profile/me";
 
 export const getMyProfile = (url) => {
@@ -13,8 +15,7 @@ export const getMyProfile = (url) => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGY3Mzg1ZDljMDhiMTAwMTUzNTEzYmIiLCJpYXQiOjE3NjEwMzIyODUsImV4cCI6MTc2MjI0MTg4NX0.5hdu_F96Cs_rQ58tR2EG2O18DfDJl8UMu5YtoGdnWXg
-`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGY3Mzg3ODljMDhiMTAwMTUzNTEzYmMiLCJpYXQiOjE3NjEwMzIzMTMsImV4cCI6MTc2MjI0MTkxM30.LKXmXGKXqZhV9oDl_CQ50O9QVVE9xFqj7noqk0oPvc8`,
         },
       });
       if (response.ok) {
@@ -40,8 +41,7 @@ export const getAllProfiles = (url, n1, n2) => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGY3Mzg1ZDljMDhiMTAwMTUzNTEzYmIiLCJpYXQiOjE3NjEwMzIyODUsImV4cCI6MTc2MjI0MTg4NX0.5hdu_F96Cs_rQ58tR2EG2O18DfDJl8UMu5YtoGdnWXg
-`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGY3Mzg3ODljMDhiMTAwMTUzNTEzYmMiLCJpYXQiOjE3NjEwMzIzMTMsImV4cCI6MTc2MjI0MTkxM30.LKXmXGKXqZhV9oDl_CQ50O9QVVE9xFqj7noqk0oPvc8`,
         },
       });
       if (response.ok) {
@@ -50,6 +50,33 @@ export const getAllProfiles = (url, n1, n2) => {
         const slicedProfiles = allProfilesdata.slice(n1, n2);
         console.log("ädsadas", slicedProfiles);
         dispatchEvent({ type: TAKE_ALL_PROFILES, payload: slicedProfiles });
+      } else {
+        throw new Error("Fetch non riuscita");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+// get experiences
+
+export const getExperiences = (url) => {
+  return async (dispatchEvent, getState) => {
+    console.log(getState());
+    try {
+      let response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGY3Mzg3ODljMDhiMTAwMTUzNTEzYmMiLCJpYXQiOjE3NjEwMzIzMTMsImV4cCI6MTc2MjI0MTkxM30.LKXmXGKXqZhV9oDl_CQ50O9QVVE9xFqj7noqk0oPvc8`,
+        },
+      });
+      if (response.ok) {
+        // console.log(response);
+        let experiences = await response.json();
+        console.log(experiences);
+        dispatchEvent({ type: TAKE_EXPERIENCES, payload: experiences });
       } else {
         throw new Error("Fetch non riuscita");
       }
