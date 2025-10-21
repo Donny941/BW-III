@@ -38,20 +38,26 @@ function ExperiencesModal(props) {
               <Form.Control required type="text" placeholder="Your Company" />
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
-            <Form.Group md="6" controlId="validationCustom03">
-              <Form.Label className="text-muted">Start Date</Form.Label>
-              <Form.Control type="text" placeholder="AAAA/MM/GG" required />
-              <Form.Control.Feedback type="invalid">Please provide a valid city.</Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group md="3" controlId="validationCustom04">
-              <Form.Label className="text-muted">End Date</Form.Label>
-              <Form.Control type="text" placeholder="AAAA/MM/GG" required />
-              <Form.Control.Feedback type="invalid">Please provide a valid state.</Form.Control.Feedback>
-            </Form.Group>
+            <div className="d-flex gap-5">
+              <Form.Group md="6" controlId="validationCustom03">
+                <Form.Label className="text-muted">Start Date</Form.Label>
+                <Form.Control type="date" placeholder="AAAA/MM/GG" required />
+                <Form.Control.Feedback type="invalid">Please provide a valid city.</Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group md="3" controlId="validationCustom04">
+                <Form.Label className="text-muted">End Date</Form.Label>
+                <Form.Control type="date" placeholder="AAAA/MM/GG" required />
+                <Form.Control.Feedback type="invalid">Please provide a valid state.</Form.Control.Feedback>
+              </Form.Group>
+            </div>
             <Form.Group md="3" controlId="validationCustom05">
               <Form.Label className="text-muted">Description</Form.Label>
               <Form.Control style={{ height: "100px" }} as="textarea" type="text" placeholder="Your Description" required />
-              <Form.Control.Feedback type="invalid">Please provide a valid zip.</Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className="position-relative mb-3">
+              <Form.Label>File</Form.Label>
+              <Form.Control type="file" required name="file" />
+              <Form.Control.Feedback type="invalid" tooltip></Form.Control.Feedback>
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Check required label="Agree to terms and conditions" feedback="You must agree before submitting." feedbackType="invalid" />

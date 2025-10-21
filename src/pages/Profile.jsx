@@ -30,7 +30,7 @@ function Profile() {
     <>
       <LinkNav />
       <Container className="myContainer">
-        <Row className="mt-4">
+        <Row className="mt-4 gap-2">
           <Col xs={8}>
             <MainProfile />
             <Suggestions />
@@ -38,7 +38,7 @@ function Profile() {
             <Activities />
             <Experiences />
           </Col>
-          <Col xs={4}>
+          <Col xs={4} className="customWidth">
             <ProfileInfo />
             <KnowPeople />
           </Col>

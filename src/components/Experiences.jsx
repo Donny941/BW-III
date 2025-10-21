@@ -38,8 +38,8 @@ function Experiences() {
           </div>
         </div>
         {experiences.map((experience) => {
-          const startDate = experience.startDate ? new Date(experience.startDate).toLocaleDateString() : "date unavaible";
-          const endDate = experience.endDate ? new Date(experience.endDate).toLocaleDateString() : "date unavaible";
+          const startDate = experience.startDate ? new Date(experience.startDate).toLocaleDateString() : "date unavailable";
+          const endDate = experience.endDate ? new Date(experience.endDate).toLocaleDateString() : "date unavailable";
           return (
             <div key={experience._id} className="d-flex">
               <div>

@@ -17,7 +17,7 @@ export const getMyProfile = (url) => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGY3Mzg3ODljMDhiMTAwMTUzNTEzYmMiLCJpYXQiOjE3NjEwMzIzMTMsImV4cCI6MTc2MjI0MTkxM30.LKXmXGKXqZhV9oDl_CQ50O9QVVE9xFqj7noqk0oPvc8`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGY3MjA2YjljMDhiMTAwMTUzNTEzYjciLCJpYXQiOjE3NjEwMjYyMjcsImV4cCI6MTc2MjIzNTgyN30.3RmMOHGpeVrzLmY3Uzfb_myoJw6IB2vANNQZn_EPGWc`,
         },
       });
       if (response.ok) {

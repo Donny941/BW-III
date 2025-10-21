@@ -12,7 +12,6 @@ function ProfileInfo() {
       <Card.Body className="pb-0">
         <div className="d-flex justify-content-between align-items-top">
           <div>
-            {" "}
             <Card.Title>Profile Language</Card.Title>
             <p className="text-muted m-0">English</p>
           </div>
@@ -28,7 +27,6 @@ function ProfileInfo() {
       <Card.Body className="pt-0">
         <div className="d-flex justify-content-between align-items-top">
           <div>
-            {" "}
             <Card.Title>Public profile & URL</Card.Title>
             {currentProfile && <p className="text-muted m-0">{`www.linkedin.com/in/${currentProfile.name}-${currentProfile.surname}/${currentProfile._id}`}</p>}
           </div>

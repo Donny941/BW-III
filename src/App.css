@@ -195,3 +195,6 @@ a:hover {
   left: -215px !important;
   width: 250px !important;
 }
+.customWidth {
+  max-width: 330px;
+}
