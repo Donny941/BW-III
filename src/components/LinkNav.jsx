@@ -1,10 +1,12 @@
 import { Button, Container, Form, InputGroup, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import logo from "../assets/logo.svg";
-import { Search, HouseDoorFill, PeopleFill, SuitcaseLgFill, ChatDotsFill, BellFill, Grid3x3GapFill } from "react-bootstrap-icons";
+import { Search, HouseDoorFill, PeopleFill, SuitcaseLgFill, ChatDotsFill, BellFill, Grid3x3GapFill, PersonFillAdd } from "react-bootstrap-icons";
 import { NavLink } from "react-router";
 import userPlace from "../assets/user.png";
+import { useSelector } from "react-redux";
 
 function LinkNav() {
+  const currentProfile = useSelector((state) => state.profile.currentprofile);
   return (
     <Navbar expand="lg" className="bg-white py-0 shadow-sm">
       <Container className="myContainer">
@@ -57,10 +59,45 @@ function LinkNav() {
               <div className="d-flex gap-1">
                 <p className="pNav">Me</p>
                 <NavDropdown id="navbarScrollingDropdown">
-                  <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+                  <div className="p-3 ">
+                    {currentProfile && (
+                      <div className="d-flex align-items-center ">
+                        <div>
+                          <img src={`${currentProfile.image}`} alt="currentProfileimage" className="img-fluid rounded-circle " style={{ width: "50px" }} />
+                        </div>
+                        <div className="ms-2">
+                          <p className="m-0 fs-6 fw-semibold">{`${currentProfile.name} ${currentProfile.surname}`}</p>
+                          <small className="m-0 "> {`${currentProfile.title}`}</small>
+                        </div>
+                      </div>
+                    )}
+                    <div className="d-flex flex-column mt-3 gap-1">
+                      <Button className="buttonOut  px-3 rounded-pill text-bold" size="sm">
+                        View profile
+                      </Button>
+                      <Button className="buttonFill  px-3 rounded-pill text-bold" size="sm">
+                        Verify now
+                      </Button>
+                    </div>
+                    <hr /> <h6 className="fw-semibold">Account</h6>
+                    <div className="d-flex flex-column">
+                      <p className="text-muted m-0"> Settings & Privacy</p>
+                      <p className="text-muted m-0"> Help </p>
+                      <p className="text-muted m-0"> Language</p>
+                    </div>
+                    <hr />
+                    <h6 className="fw-semibold">Manage</h6>
+                    <div className="d-flex flex-column">
+                      <p className="text-muted m-0">Posts & Activity</p>
+                      <p className="text-muted m-0"> Job Posting Account </p>
+                    </div>
+                    <hr />
+                    <p className="text-muted m-0"> Sign Out</p>
+                  </div>
+                  {/* <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action5">Something else here</NavDropdown.Item>
+                  <NavDropdown.Item href="#action5">Something else here</NavDropdown.Item> */}
                 </NavDropdown>
               </div>
             </div>

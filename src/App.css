@@ -190,3 +190,8 @@ a:hover {
   color: #0a66c2;
   text-decoration: underline;
 }
+
+.dropdown-menu {
+  left: -215px !important;
+  width: 250px !important;
+}
