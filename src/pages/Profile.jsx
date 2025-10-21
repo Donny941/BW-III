@@ -9,8 +9,23 @@ import Experiences from "../components/Experiences";
 import ProfileInfo from "../components/ProfileInfo";
 import KnowPeople from "../components/KnowPeople";
 import Footer from "../components/Footer";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getMyProfile } from "../redux/action";
 
 function Profile() {
+  // const URL = import.meta.env.VITE_URL;
+  // const MY_TOKEN = import.meta.env.MY_TOKEN;
+
+  const URL = "https://striveschool-api.herokuapp.com/api/profile/me";
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log(URL);
+    dispatch(getMyProfile(URL));
+  }, []);
+
   return (
     <>
       <LinkNav />
