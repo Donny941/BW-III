@@ -1,4 +1,4 @@
-// const MY_TOKEN = import.meta.env.VITE_MY_TOKEN;
+const MY_TOKEN = import.meta.env.VITE_MY_TOKEN;
 
 // const URL = import.meta.env.URL;
 export const TAKE_PROFILE = "TAKE_PROFILE";
@@ -17,7 +17,7 @@ export const getMyProfile = (url) => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGY3MjA2YjljMDhiMTAwMTUzNTEzYjciLCJpYXQiOjE3NjEwMjYyMjcsImV4cCI6MTc2MjIzNTgyN30.3RmMOHGpeVrzLmY3Uzfb_myoJw6IB2vANNQZn_EPGWc`,
+          Authorization: `Bearer ${MY_TOKEN}`,
         },
       });
       if (response.ok) {
@@ -43,7 +43,7 @@ export const getAllProfiles = (url, n1, n2) => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGY3Mzg3ODljMDhiMTAwMTUzNTEzYmMiLCJpYXQiOjE3NjEwMzIzMTMsImV4cCI6MTc2MjI0MTkxM30.LKXmXGKXqZhV9oDl_CQ50O9QVVE9xFqj7noqk0oPvc8`,
+          Authorization: `Bearer  ${MY_TOKEN}`,
         },
       });
       if (response.ok) {
@@ -71,13 +71,13 @@ export const getExperiences = (url) => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGY3Mzg3ODljMDhiMTAwMTUzNTEzYmMiLCJpYXQiOjE3NjEwMzIzMTMsImV4cCI6MTc2MjI0MTkxM30.LKXmXGKXqZhV9oDl_CQ50O9QVVE9xFqj7noqk0oPvc8`,
+          Authorization: `Bearer ${MY_TOKEN}`,
         },
       });
       if (response.ok) {
         // console.log(response);
         let experiences = await response.json();
-        console.log(experiences);
+        console.log("GET!!!!!", experiences);
         dispatchEvent({ type: TAKE_EXPERIENCES, payload: experiences });
       } else {
         throw new Error("Fetch non riuscita");
@@ -88,27 +88,42 @@ export const getExperiences = (url) => {
   };
 };
 
-export const postExperiences = (url, post) => {
+export const handleExperiences = (url, post, type) => {
   return async () => {
     try {
       let response = await fetch(url, {
-        method: "POST",
-        body: {
-          // role: "",
-          // company: "",
-          // startDate: "",
-          // endDate: "",
-          // description: "",
-          // area: "",
-          post,
-        },
+        method: type,
+        body: JSON.stringify(post),
+
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGY3Mzg3ODljMDhiMTAwMTUzNTEzYmMiLCJpYXQiOjE3NjEwMzIzMTMsImV4cCI6MTc2MjI0MTkxM30.LKXmXGKXqZhV9oDl_CQ50O9QVVE9xFqj7noqk0oPvc8`,
+          Authorization: `Bearer  ${MY_TOKEN}`,
         },
       });
       if (response.ok) {
-        console.log(response);
+        console.log("risposta", response);
+      } else {
+        throw new Error("Fetch non riuscita");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const deleteExperiences = (url) => {
+  return async () => {
+    try {
+      let response = await fetch(url, {
+        method: "DELETE",
+
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer  ${MY_TOKEN}`,
+        },
+      });
+      if (response.ok) {
+        console.log("risposta", response);
       } else {
         throw new Error("Fetch non riuscita");
       }

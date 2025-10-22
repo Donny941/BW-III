@@ -39,7 +39,12 @@ function KnowPeople() {
             <div key={profile._id}>
               <div className="d-flex align-items-top ">
                 <div>
-                  <img src={`${profile.image}`} alt="profileimage" className="img-fluid rounded-circle " style={{ width: "48px" }} />
+                  <img
+                    src={`${profile.image}`}
+                    alt="profileimage"
+                    className="img-fluid rounded-circle "
+                    style={{ width: "48px", height: "48px", objectFit: "cover" }}
+                  />
                 </div>
                 <div className="ms-2">
                   <p className="m-0 fs-5 fw-semibold">{`${profile.name} ${profile.surname}`}</p>

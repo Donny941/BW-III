@@ -23,7 +23,8 @@
 .searchIcon {
   position: absolute;
   z-index: 999;
-  left: 33px;
+  left: 13px;
+  top: 10px;
 }
 
 .inputPad {
@@ -176,7 +177,7 @@ a:hover {
 }
 
 .myContainer {
-  max-width: 1100px;
+  max-width: 1200px;
 }
 
 .footerLink {
@@ -197,4 +198,7 @@ a:hover {
 }
 .customWidth {
   max-width: 330px;
+}
+.marginForNav {
+  margin-top: 60px;
 }

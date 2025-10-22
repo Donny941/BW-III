@@ -1,23 +1,43 @@
 import Card from "react-bootstrap/Card";
-import { Pencil, PlusLg } from "react-bootstrap-icons";
-import Modal from "react-bootstrap/Modal";
+import { Pencil, PlusLg, Trash2Fill } from "react-bootstrap-icons";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getExperiences } from "../redux/action";
+import { deleteExperiences, getExperiences } from "../redux/action";
 import ExperiencesModal from "./ExperiencesModal";
 
 function Experiences() {
+  const [experience, setExperience] = useState(null);
   const [modalShow, setModalShow] = useState(false);
-
+  // const id = "68f738789c08b100153513bc";
+  const userId = useSelector((state) => state.profile.currentprofile);
+  console.log("user id", userId);
   const experiences = useSelector((state) => state.experiences.allexperiences);
-  const Dispatch = useDispatch();
-
-  const URL = "https://striveschool-api.herokuapp.com/api/profile/667079932b4f140015b37466/experiences";
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    Dispatch(getExperiences(URL));
-  }, []);
+    if (userId !== null) {
+      const URL = `https://striveschool-api.herokuapp.com/api/profile/${userId._id}/experiences`;
+      dispatch(getExperiences(URL));
+    } else {
+      console.log("no user id");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userId]);
+
+  const handleDelete = (id) => {
+    const URL_DELETE = ` https://striveschool-api.herokuapp.com/api/profile/${userId._id}/experiences/${id} `;
+    dispatch(deleteExperiences(URL_DELETE));
+
+    setTimeout(() => {
+      const URL_GET = `https://striveschool-api.herokuapp.com/api/profile/${userId._id}/experiences`;
+      dispatch(getExperiences(URL_GET));
+    }, 1000);
+  };
+
+  const handleEdit = (experience) => {
+    setExperience(experience);
+  };
 
   return (
     <Card className="mt-2 mb-5">
@@ -28,10 +48,16 @@ function Experiences() {
             <Card.Title>Experience</Card.Title>
           </div>
           <div className="d-flex gap-2 align-items-top position-relative">
-            <div className="plusBtn position-absolute   d-flex align-items-center justify-content-center" onClick={() => setModalShow(true)}>
+            <div
+              className="plusBtn position-absolute   d-flex align-items-center justify-content-center"
+              onClick={() => {
+                setModalShow(true);
+                setExperience(null);
+              }}
+            >
               <PlusLg fontSize={25} />
             </div>
-            <ExperiencesModal show={modalShow} onHide={() => setModalShow(false)} />
+            <ExperiencesModal show={modalShow} setModalShow={setModalShow} experience={experience} onHide={() => setModalShow(false)} />
             <div className="editButton2 position-absolute   d-flex align-items-center justify-content-center">
               <Pencil fontSize={20} />
             </div>
@@ -41,14 +67,26 @@ function Experiences() {
           const startDate = experience.startDate ? new Date(experience.startDate).toLocaleDateString() : "date unavailable";
           const endDate = experience.endDate ? new Date(experience.endDate).toLocaleDateString() : "date unavailable";
           return (
-            <div key={experience._id} className="d-flex">
+            <div key={experience._id} className="d-flex align-items-center gap-2 my-1">
               <div>
-                <img src={experience.image} alt="" style={{ width: "50px" }} />
+                <img src={experience.image} alt="experiecesimg" style={{ width: "50px", height: "50px", objectFit: "cover" }} />
               </div>
               <div className="ms-2">
-                <p className="m-0 fw-semibold">{experience.role}</p>
+                <p
+                  className="m-0 fw-semibold"
+                  onClick={() => {
+                    handleEdit(experience);
+                    setModalShow(true);
+                  }}
+                >
+                  {experience.role}
+                </p>
+
                 <p className="m-0">{experience.company}</p>
                 <small className="text-muted">{`${startDate}-${endDate}`}</small>
+              </div>
+              <div onClick={() => handleDelete(experience._id)} className="ms-auto editButton2   d-flex align-items-center justify-content-center">
+                <Trash2Fill className="text-muted" fontSize={20} />
               </div>
             </div>
           );

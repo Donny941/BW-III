@@ -3,22 +3,21 @@ import logo from "../assets/logo.svg";
 import { Search, HouseDoorFill, PeopleFill, SuitcaseLgFill, ChatDotsFill, BellFill, Grid3x3GapFill, PersonFillAdd } from "react-bootstrap-icons";
 import { NavLink } from "react-router";
 import userPlace from "../assets/user.png";
+import search from "../assets/icons/search.svg";
 import { useSelector } from "react-redux";
 
 function LinkNav() {
   const currentProfile = useSelector((state) => state.profile.currentprofile);
   return (
-    <Navbar expand="lg" className="bg-white py-0 shadow-sm">
+    <Navbar expand="lg" className="bg-white py-0 shadow-sm fixed-top">
       <Container className="myContainer">
         <Navbar.Brand href="#">
-          <img src={logo} width="30" height="30" className="d-inline-block align-top logo" alt="logo" />
+          <img src={logo} width="40" height="40" className="d-inline-block align-top logo" alt="logo" />
         </Navbar.Brand>
         <Form className="d-flex">
           <InputGroup>
-            <InputGroup.Text className="border-0 ">
-              <Search className="searchIcon" fontSize={14} />
-            </InputGroup.Text>
-            <Form.Control type="search" placeholder="Search" className="me-2 rounded-pill inputPad" aria-label="Search" />
+            <img src={search} className="searchIcon"></img>
+            <Form.Control type="search" style={{ width: "300px" }} placeholder="Search" className="me-2 rounded-pill inputPad" aria-label="Search" />
           </InputGroup>
         </Form>
         <Navbar.Toggle aria-controls="navbarScroll" />

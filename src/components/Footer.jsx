@@ -5,7 +5,7 @@ import { Button, Row, Col, Form } from "react-bootstrap";
 
 function Footer() {
   return (
-    <Row>
+    <Row className="px-5 mb-3">
       <Col className="d-flex flex-column">
         <a className="footerLink " href="">
           About
@@ -54,42 +54,43 @@ function Footer() {
       </Col>
       <Col className="d-flex flex-column">
         <div className="d-flex">
-          <QuestionCircleFill />{" "}
-          <div>
-            <a className="footerLink " href="">
+          <QuestionCircleFill size={25} />
+          <div className="d-flex flex-column ms-2 mb-1">
+            <a className="footerLink fw-semibold mb-0" href="">
               Talent Solutions
             </a>
-            <small className="text-muted">bimsdadad</small>
+            <small className="text-muted">Visit our Help Center.</small>
           </div>
         </div>
         <div className="d-flex">
-          <GearFill />
-          <div>
-            <a className="footerLink -block" href="">
+          <GearFill size={25} />
+          <div className="d-flex flex-column ms-2 mb-1">
+            <a className="footerLink fw-semibold mb-0" href="">
               Talent Solutions
             </a>
-            <small className="text-muted">bimsdadad</small>
+            <small className="text-muted">Go to your Settings.</small>
           </div>
         </div>
         <div className="d-flex">
-          <ShieldShaded />
-          <div>
-            <a className="footerLink " href="">
+          <ShieldShaded size={35} />
+          <div className="d-flex flex-column ms-2 mb-1">
+            <a className="footerLink fw-semibold mb-0" href="">
               Talent Solutions
             </a>
-            <small className="text-muted">bimsdadad</small>
+            <small className="text-muted">Learn more about Recommended Content.</small>
           </div>
         </div>
       </Col>
       <Col className="d-flex flex-column">
+        <Form.Label className="text-muted">Select Language</Form.Label>
         <Form.Select aria-label="Default select example">
-          <option>Select Language</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          <option>English</option>
+          <option value="1">English</option>
+          <option value="2">Japanese</option>
+          <option value="3">Chinese</option>
         </Form.Select>
       </Col>
-      <p className="text-muted">LinkedIn Corporation © 2025</p>
+      <small className="text-muted">LinkedIn Corporation © 2025</small>
     </Row>
   );
 }

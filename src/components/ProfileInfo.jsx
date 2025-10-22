@@ -26,12 +26,14 @@ function ProfileInfo() {
       </Card.Body>
       <Card.Body className="pt-0">
         <div className="d-flex justify-content-between align-items-top">
-          <div>
+          <div className="overflow-hidden">
             <Card.Title>Public profile & URL</Card.Title>
-            {currentProfile && <p className="text-muted m-0">{`www.linkedin.com/in/${currentProfile.name}-${currentProfile.surname}/${currentProfile._id}`}</p>}
+            {currentProfile && (
+              <p className="truncate text-muted m-0">{`www.linkedin.com/in/${currentProfile.name}-${currentProfile.surname}/${currentProfile._id}`}</p>
+            )}
           </div>
           <div className="d-flex gap-2 align-items-top position-relative">
-            <div className="editButton2 position-absolute   d-flex align-items-center justify-content-center">
+            <div className="editButton2 position-absolute right-0 me-3 d-flex align-items-center justify-content-center">
               <Pencil fontSize={20} />
             </div>
           </div>

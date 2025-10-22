@@ -13,9 +13,9 @@ function Analytics() {
           <p className="text-muted m-0 ms-1">Private to you</p>
         </div>
 
-        <Row className="mt-3">
+        <Row xs={3} className="mt-3 px-1">
           <Col>
-            <div className="d-flex" style={{ width: "250px" }}>
+            <div className="d-flex">
               <div>
                 <PeopleFill size={25} />
               </div>
@@ -28,7 +28,7 @@ function Analytics() {
             </div>
           </Col>
           <Col>
-            <div className="d-flex" style={{ width: "250px" }}>
+            <div className="d-flex">
               <div>
                 <BarChartLineFill size={25} />
               </div>
@@ -41,7 +41,7 @@ function Analytics() {
             </div>
           </Col>
           <Col>
-            <div className="d-flex" style={{ width: "250px" }}>
+            <div className="d-flex">
               <div>
                 <Search size={25} />
               </div>
