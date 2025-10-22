@@ -37,6 +37,11 @@
   left: 25px;
 }
 
+.avatarProfile2 {
+  top: 25px;
+  left: 25px;
+}
+
 .badgeProfile {
   border: 1px solid #0a66c2;
   border-style: dashed !important;
@@ -157,6 +162,7 @@ a:hover {
   color: #2e2e2e;
   transition: all 0.2s ease;
 }
+
 .editButton2:hover {
   background-color: rgb(212, 212, 212);
 }
@@ -172,6 +178,7 @@ a:hover {
   color: #2e2e2e;
   transition: all 0.2s ease;
 }
+
 .plusBtn:hover {
   background-color: rgb(212, 212, 212);
 }
@@ -187,6 +194,7 @@ a:hover {
 
   margin-bottom: 10px;
 }
+
 .footerLink:hover {
   color: #0a66c2;
   text-decoration: underline;
@@ -196,9 +204,11 @@ a:hover {
   left: -215px !important;
   width: 250px !important;
 }
+
 .customWidth {
   max-width: 330px;
 }
+
 .marginForNav {
   margin-top: 60px;
 }
