@@ -212,3 +212,27 @@ a:hover {
 .marginForNav {
   margin-top: 60px;
 }
+
+.itemLink {
+  color: black;
+  text-decoration: none;
+  font-size: 14px;
+
+  margin-bottom: 10px;
+}
+
+.itemLink:hover {
+  text-decoration: underline;
+}
+.buttonPost {
+  background-color: transparent;
+  border: none;
+  color: #272727ec;
+  padding-block: 10px;
+  padding-inline: 8px;
+}
+.buttonPost:hover {
+  background-color: rgb(219, 219, 219);
+  border: none;
+  color: black;
+}

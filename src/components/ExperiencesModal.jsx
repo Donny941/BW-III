@@ -2,11 +2,10 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useEffect, useState } from "react";
 
-import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
+
 import Row from "react-bootstrap/Row";
-import { getExperiences, handleExperiences } from "../redux/action";
+import { handleExperiences } from "../redux/action";
 import { useDispatch, useSelector } from "react-redux";
 
 function ExperiencesModal({ show, experience, onHide, setModalShow }) {
@@ -46,10 +45,6 @@ function ExperiencesModal({ show, experience, onHide, setModalShow }) {
       // console.log("Ho fatto la post");
     }
 
-    setTimeout(() => {
-      const URL_GET = `https://striveschool-api.herokuapp.com/api/profile/${userId._id}/experiences`;
-      dispatch(getExperiences(URL_GET));
-    }, 2000);
     setFormData({
       area: "",
       company: "",
@@ -62,27 +57,27 @@ function ExperiencesModal({ show, experience, onHide, setModalShow }) {
   };
 
   useEffect(() => {
-    if (show) {
-      if (experience) {
-        const ISOendDate = experience.endDate;
-        console.log(ISOendDate);
-        const endDate = ISOendDate.split("T")[0];
-        const ISOstartDate = experience.startDate;
-        console.log(ISOstartDate);
-        const startDate = ISOstartDate.split("T")[0];
+    if (!show) return;
 
-        setFormData({
-          area: experience.area,
-          company: experience.company,
-          description: experience.description,
-          endDate: endDate,
-          image: experience.image,
-          role: experience.role,
-          startDate: startDate,
-        });
-      } else {
-        setFormData({ area: "", company: "", description: "", endDate: "", image: "", role: "", startDate: "" });
-      }
+    if (experience) {
+      const ISOendDate = experience.endDate;
+      console.log(ISOendDate);
+      const endDate = ISOendDate.split("T")[0];
+      const ISOstartDate = experience.startDate;
+      console.log(ISOstartDate);
+      const startDate = ISOstartDate.split("T")[0];
+
+      setFormData({
+        area: experience.area,
+        company: experience.company,
+        description: experience.description,
+        endDate: endDate,
+        image: experience.image,
+        role: experience.role,
+        startDate: startDate,
+      });
+    } else {
+      setFormData({ area: "", company: "", description: "", endDate: "", image: "", role: "", startDate: "" });
     }
   }, [experience]);
 

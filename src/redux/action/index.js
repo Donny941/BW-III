@@ -63,11 +63,13 @@ export const getAllProfiles = (url, n1, n2) => {
 
 // get experiences
 
-export const getExperiences = (url) => {
+export const getExperiences = () => {
   return async (dispatchEvent, getState) => {
     console.log(getState());
+    const state = getState();
+    const URL_GET = `https://striveschool-api.herokuapp.com/api/profile/${state.profile.currentprofile._id}/experiences`;
     try {
-      let response = await fetch(url, {
+      let response = await fetch(URL_GET, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -89,7 +91,7 @@ export const getExperiences = (url) => {
 };
 
 export const handleExperiences = (url, post, type) => {
-  return async () => {
+  return async (dispatch) => {
     try {
       let response = await fetch(url, {
         method: type,
@@ -102,6 +104,8 @@ export const handleExperiences = (url, post, type) => {
       });
       if (response.ok) {
         console.log("risposta", response);
+
+        dispatch(getExperiences());
       } else {
         throw new Error("Fetch non riuscita");
       }

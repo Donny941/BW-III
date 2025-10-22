@@ -13,9 +13,10 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getMyProfile } from "../redux/action";
 import HomeProfile from "../components/HomeProfile";
+import Items from "../components/Items";
+import SelectFeed from "../components/SelectFeed";
 
 function Home() {
-
   const URL = "https://striveschool-api.herokuapp.com/api/profile/me";
 
   const dispatch = useDispatch();
@@ -32,11 +33,11 @@ function Home() {
         <Row className="marginForNav">
           <Col xs={3} className="customWidth">
             <HomeProfile />
+            <Items />
           </Col>
           <Col xs={5}>
-
             <NewPost />
-
+            <SelectFeed />
           </Col>
           <Col xs={4} className="customWidth">
             <ProfileInfo />
