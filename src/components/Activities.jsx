@@ -3,7 +3,7 @@ import { EyeFill, PeopleFill, BarChartLineFill, Search, ArrowRight, Pencil } fro
 
 import { Button, Row, Col } from "react-bootstrap";
 
-function Activities() {
+function Activities({ isMyProfile }) {
   return (
     <Card className="mt-2 ">
       <Card.Body className="border border-bottom border-tertiary">
@@ -22,9 +22,11 @@ function Activities() {
                 Create a post
               </Button>
             </div>
-            <div className="editButton2 position-absolute   d-flex align-items-center justify-content-center">
-              <Pencil fontSize={20} />
-            </div>
+            {isMyProfile && (
+              <div className="editButton2 position-absolute   d-flex align-items-center justify-content-center">
+                <Pencil fontSize={20} />
+              </div>
+            )}
           </div>
         </div>
       </Card.Body>

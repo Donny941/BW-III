@@ -2,7 +2,7 @@ const MY_TOKEN = import.meta.env.VITE_MY_TOKEN;
 
 // const URL = import.meta.env.URL;
 export const TAKE_PROFILE = "TAKE_PROFILE";
-export const TAKE_MY_PROFILE = "TAKE_PROFILE";
+export const TAKE_MY_PROFILE = "TAKE_MY_PROFILE";
 export const TAKE_ALL_PROFILES = "TAKE_ALL_PROFILES";
 export const TAKE_EXPERIENCES = "TAKE_EXPERIENCES";
 export const POST_EXPERIENCES = "POST_EXPERIENCES";
@@ -11,7 +11,31 @@ export const TAKE_POST = "TAKE_POST";
 
 // const URL = "https://striveschool-api.herokuapp.com/api/profile/me";
 
-export const getProfile = (url, type) => {
+export const getMyProfile = (url) => {
+  return async (dispatchEvent, getState) => {
+    console.log(getState());
+    try {
+      let response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${MY_TOKEN}`,
+        },
+      });
+      if (response.ok) {
+        // console.log(response);
+        let profiledata = await response.json();
+        console.log("myProfile", profiledata);
+        dispatchEvent({ type: TAKE_MY_PROFILE, payload: profiledata });
+      } else {
+        throw new Error("Fetch non riuscita");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+export const getProfile = (url) => {
   return async (dispatchEvent, getState) => {
     console.log(getState());
     try {
@@ -26,7 +50,7 @@ export const getProfile = (url, type) => {
         // console.log(response);
         let profiledata = await response.json();
         console.log(profiledata);
-        dispatchEvent({ type, payload: profiledata });
+        dispatchEvent({ type: TAKE_PROFILE, payload: profiledata });
       } else {
         throw new Error("Fetch non riuscita");
       }

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { deleteExperiences, getExperiences } from "../redux/action";
 import ExperiencesModal from "./ExperiencesModal";
 
-function Experiences() {
+function Experiences({ isMyProfile }) {
   const [experience, setExperience] = useState(null);
   const [modalShow, setModalShow] = useState(false);
   // const id = "68f738789c08b100153513bc";
@@ -47,21 +47,23 @@ function Experiences() {
             {" "}
             <Card.Title>Experience</Card.Title>
           </div>
-          <div className="d-flex gap-2 align-items-top position-relative">
-            <div
-              className="plusBtn position-absolute   d-flex align-items-center justify-content-center"
-              onClick={() => {
-                setModalShow(true);
-                setExperience(null);
-              }}
-            >
-              <PlusLg fontSize={25} />
+          {isMyProfile && (
+            <div className="d-flex gap-2 align-items-top position-relative">
+              <div
+                className="plusBtn position-absolute   d-flex align-items-center justify-content-center"
+                onClick={() => {
+                  setModalShow(true);
+                  setExperience(null);
+                }}
+              >
+                <PlusLg fontSize={25} />
+              </div>
+              <ExperiencesModal show={modalShow} setModalShow={setModalShow} experience={experience} onHide={() => setModalShow(false)} />
+              <div className="editButton2 position-absolute   d-flex align-items-center justify-content-center">
+                <Pencil fontSize={20} />
+              </div>
             </div>
-            <ExperiencesModal show={modalShow} setModalShow={setModalShow} experience={experience} onHide={() => setModalShow(false)} />
-            <div className="editButton2 position-absolute   d-flex align-items-center justify-content-center">
-              <Pencil fontSize={20} />
-            </div>
-          </div>
+          )}
         </div>
         {experiences.map((experience) => {
           const startDate = experience.startDate ? new Date(experience.startDate).toLocaleDateString() : "date unavailable";
@@ -85,9 +87,12 @@ function Experiences() {
                 <p className="m-0">{experience.company}</p>
                 <small className="text-muted">{`${startDate}-${endDate}`}</small>
               </div>
-              <div onClick={() => handleDelete(experience._id)} className="ms-auto editButton2   d-flex align-items-center justify-content-center">
-                <Trash2Fill className="text-muted" fontSize={20} />
-              </div>
+
+              {isMyProfile && (
+                <div onClick={() => handleDelete(experience._id)} className="ms-auto editButton2   d-flex align-items-center justify-content-center">
+                  <Trash2Fill className="text-muted" fontSize={20} />
+                </div>
+              )}
             </div>
           );
         })}

@@ -29,12 +29,13 @@ function Profile() {
       setIsMyProfile(false);
     }
   };
-  rightProfile();
+
   useEffect(() => {
+    rightProfile();
     console.log(URL);
     dispatch(getProfile(URL));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [params, myProfile]);
+  }, [params]);
 
   return (
     <>

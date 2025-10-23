@@ -1,12 +1,10 @@
 import { Button, Container, Form, InputGroup, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import logo from "../assets/logo.svg";
-import { Search, HouseDoorFill, PeopleFill, SuitcaseLgFill, ChatDotsFill, BellFill, Grid3x3GapFill, PersonFillAdd } from "react-bootstrap-icons";
+import { HouseDoorFill, PeopleFill, SuitcaseLgFill, ChatDotsFill, BellFill, Grid3x3GapFill, PersonFillAdd } from "react-bootstrap-icons";
 import { Link, NavLink } from "react-router";
 import userPlace from "../assets/user.png";
 import search from "../assets/icons/search.svg";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getProfile } from "../redux/action";
+import { useSelector } from "react-redux";
 
 function LinkNav() {
   const myProfile = useSelector((state) => state.profile.myprofile);
@@ -62,25 +60,28 @@ function LinkNav() {
                 <p className="pNav">Me</p>
                 <NavDropdown id="navbarScrollingDropdown">
                   <div className="p-3 ">
-                    {myProfile && (
-                      <div className="d-flex align-items-center ">
-                        <div>
-                          <img src={`${myProfile.image}`} alt="myProfileimage" className="img-fluid rounded-circle " style={{ width: "50px" }} />
+                    {myProfile !== null && (
+                      <>
+                        <div className="d-flex align-items-center ">
+                          <div>
+                            <img src={`${myProfile.image}`} alt="myProfileimage" className="img-fluid rounded-circle " style={{ width: "50px" }} />
+                          </div>
+                          <div className="ms-2">
+                            <p className="m-0 fs-6 fw-semibold">{`${myProfile.name} ${myProfile.surname}`}</p>
+                            <small className="m-0 "> {`${myProfile.title}`}</small>
+                          </div>
                         </div>
-                        <div className="ms-2">
-                          <p className="m-0 fs-6 fw-semibold">{`${myProfile.name} ${myProfile.surname}`}</p>
-                          <small className="m-0 "> {`${myProfile.title}`}</small>
+
+                        <div className="d-flex flex-column mt-3 gap-1">
+                          <Button className="buttonOut  px-3 rounded-pill text-bold" size="sm">
+                            <Link to={`/profile/${myProfile._id}`}>View profile</Link>
+                          </Button>
+                          <Button className="buttonFill  px-3 rounded-pill text-bold" size="sm">
+                            Verify now
+                          </Button>
                         </div>
-                      </div>
+                      </>
                     )}
-                    <div className="d-flex flex-column mt-3 gap-1">
-                      <Button className="buttonOut  px-3 rounded-pill text-bold" size="sm">
-                        <Link to="/profile">View profile</Link>
-                      </Button>
-                      <Button className="buttonFill  px-3 rounded-pill text-bold" size="sm">
-                        Verify now
-                      </Button>
-                    </div>
                     <hr /> <h6 className="fw-semibold">Account</h6>
                     <div className="d-flex flex-column">
                       <p className="text-muted m-0"> Settings & Privacy</p>

@@ -4,7 +4,7 @@ import suggestPlace from "../assets/suggplace.svg";
 import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 
-function Suggestions() {
+function Suggestions({ isMyProfile }) {
   const currentProfile = useSelector((state) => state.profile.currentprofile);
 
   return (
@@ -34,9 +34,11 @@ function Suggestions() {
                   </div>
                 </div>
               ) : (
-                <div className="editButton position-absolute top-0 right-0  mt-2 me-4 d-flex align-items-center justify-content-center">
-                  <Pencil fontSize={20} />
-                </div>
+                isMyProfile && (
+                  <div className="editButton position-absolute top-0 right-0  mt-2 me-4 d-flex align-items-center justify-content-center">
+                    <Pencil fontSize={20} />
+                  </div>
+                )
               )}
             </div>
           </Card.Body>

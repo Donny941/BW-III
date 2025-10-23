@@ -30,9 +30,11 @@ function MainProfile({ isMyProfile }) {
           )}
 
           <Card.Body className="mt-5 p-4 position-relative">
-            <div className="position-absolute me-4 mt-3 editButton d-flex align-items-center justify-content-center">
-              <Pencil fontSize={20} />
-            </div>
+            {isMyProfile && (
+              <div className="position-absolute me-4 mt-3 editButton d-flex align-items-center justify-content-center">
+                <Pencil fontSize={20} />
+              </div>
+            )}
             <div className="d-flex">
               <Card.Title className="fs-3">{`${currentProfile.name}  ${currentProfile.surname}`}</Card.Title>
               <div>
