@@ -8,11 +8,15 @@ import play from "../assets/icons/play.svg";
 import { Badge, CardBody, Col, Row } from "react-bootstrap";
 import { Pencil, CameraFill, PlayBtnFill, Image, BlockquoteLeft } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
+import { useState } from "react";
+import PostModal from "./PostModal";
 
 function NewPost() {
   const currentProfile = useSelector((state) => state.profile.currentprofile);
 
   // console.log(currentProfile);
+
+  const [modalShow, setModalShow] = useState(false);
 
   return (
     <>
@@ -30,7 +34,10 @@ function NewPost() {
                   />
                 </div>
 
-                <Button className="buttonOutGrey px-3 rounded-pill fw-medium w-100 align-items-center text-start text-dark" style={{ height: "50px" }}>
+                <PostModal show={modalShow} setModalShow={setModalShow} />
+
+
+                <Button className="buttonOutGrey px-3 rounded-pill fw-medium w-100 align-items-center text-start text-dark" style={{ height: "50px" }} onClick={() => setModalShow(true)}>
                   Start a post
                 </Button>
               </div>
