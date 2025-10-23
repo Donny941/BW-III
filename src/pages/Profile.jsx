@@ -24,6 +24,7 @@ function Profile() {
   useEffect(() => {
     console.log(URL);
     dispatch(getMyProfile(URL));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

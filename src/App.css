@@ -261,3 +261,7 @@ ul {
   border: none;
   color: black;
 }
+.sticky-column-container .sticky-content {
+  position: sticky;
+  top: 65px;
+}

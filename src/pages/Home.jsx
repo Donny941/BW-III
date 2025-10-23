@@ -1,12 +1,8 @@
 import { Col, Container, Row } from "react-bootstrap";
 import LinkNav from "../components/LinkNav";
-import ProfileInfo from "../components/ProfileInfo";
+
 import KnowPeople from "../components/KnowPeople";
-import MainProfile from "../components/MainProfile";
-import Suggestions from "../components/Suggestions";
-import Analytics from "../components/Analytics";
-import Activities from "../components/Activities";
-import Experiences from "../components/Experiences";
+
 import Footer from "../components/Footer";
 import NewPost from "../components/NewPost";
 import { useEffect } from "react";
@@ -38,15 +34,16 @@ function Home() {
     console.log(URL);
     dispatch(getMyProfile(URL));
     dispatch(getPosts(URL_POST, n1, n2));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
       <LinkNav />
       <Container className="myContainer2">
-        <Row className="marginForNav ">
-          <Col xs={3} className="customWidth position-realative">
-            <div className=" position-sticky">
+        <Row className="marginForNav">
+          <Col xs={3} className="sticky-column-container">
+            <div className="sticky-content">
               <HomeProfile />
               <Items />
             </div>
@@ -58,10 +55,12 @@ function Home() {
               <Post post={post} key={post._id} />
             ))}
           </Col>
-          <Col xs={3} className="customWidth">
+          <Col xs={3} className="customWidth sticky-column-container">
             <PuzzleGames />
             <KnowPeople people={3} />
-            <Footer />
+            <div className="sticky-content">
+              <Footer />
+            </div>
           </Col>
         </Row>
       </Container>

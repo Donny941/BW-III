@@ -10,7 +10,7 @@ function LinkNav() {
   const currentProfile = useSelector((state) => state.profile.currentprofile);
   return (
     <Navbar expand="lg" className="bg-white py-0 shadow-sm fixed-top">
-      <Container className="myContainer">
+      <Container className="myContainer2">
         <Navbar.Brand href="#">
           <img src={logo} width="40" height="40" className="d-inline-block align-top logo" alt="logo" />
         </Navbar.Brand>
