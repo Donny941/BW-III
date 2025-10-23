@@ -7,7 +7,7 @@ import Footer from "../components/Footer";
 import NewPost from "../components/NewPost";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMyProfile, getPosts } from "../redux/action";
+import { getProfile, getPosts, TAKE_PROFILE } from "../redux/action";
 import HomeProfile from "../components/HomeProfile";
 import Items from "../components/Items";
 import SelectFeed from "../components/SelectFeed";
@@ -32,7 +32,7 @@ function Home() {
 
   useEffect(() => {
     console.log(URL);
-    dispatch(getMyProfile(URL));
+    dispatch(getProfile(URL, "TAKE_PROFILE"));
     dispatch(getPosts(URL_POST, n1, n2));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

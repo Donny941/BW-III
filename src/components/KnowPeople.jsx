@@ -5,6 +5,7 @@ import { Button, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllProfiles } from "../redux/action";
+import { Link } from "react-router";
 
 function KnowPeople({ people }) {
   const allProfiles = useSelector((state) => state.allprofiles.profiles);
@@ -47,7 +48,9 @@ function KnowPeople({ people }) {
                   />
                 </div>
                 <div className="ms-2">
-                  <p className="m-0 fs-5 fw-semibold">{`${profile.name} ${profile.surname}`}</p>
+                  <Link to={`/profile/${profile._id}`}>
+                    <p className="m-0 fs-5 fw-semibold">{`${profile.name} ${profile.surname}`}</p>
+                  </Link>
                   <p className="m-0">{`${profile.title}`}</p>
                   <Button className="buttonOutGrey mt-2 px-3 fs-6 rounded-pill text-bold" size="sm">
                     <PersonFillAdd size={20} /> <p className="m-0 d-inline-block align-middle">Connect</p>

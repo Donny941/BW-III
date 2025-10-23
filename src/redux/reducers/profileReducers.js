@@ -1,7 +1,8 @@
-import { TAKE_PROFILE } from "../action";
+import { TAKE_PROFILE, TAKE_MY_PROFILE } from "../action";
 
 const profileState = {
   currentprofile: null,
+  myprofile: null,
 };
 
 const profileReducers = (state = profileState, action) => {
@@ -10,6 +11,11 @@ const profileReducers = (state = profileState, action) => {
       return {
         ...state,
         currentprofile: action.payload,
+      };
+    case TAKE_MY_PROFILE:
+      return {
+        ...state,
+        myprofile: action.payload,
       };
 
     default:

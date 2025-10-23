@@ -7,7 +7,7 @@ import { Badge } from "react-bootstrap";
 import { Pencil, CameraFill } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
 
-function MainProfile() {
+function MainProfile({ isMyProfile }) {
   const currentProfile = useSelector((state) => state.profile.currentprofile);
 
   // console.log(currentProfile);
@@ -23,9 +23,11 @@ function MainProfile() {
             className="position-absolute avatarProfile img-fluid rounded-circle mt-1 border border-4 border-white"
             style={{ width: "150px" }}
           />
-          <div className="position-absolute end-0 me-4 mt-3 circleButton d-flex align-items-center justify-content-center">
-            <CameraFill fontSize={20} />
-          </div>
+          {isMyProfile && (
+            <div className="position-absolute end-0 me-4 mt-3 circleButton d-flex align-items-center justify-content-center">
+              <CameraFill fontSize={20} />
+            </div>
+          )}
 
           <Card.Body className="mt-5 p-4 position-relative">
             <div className="position-absolute me-4 mt-3 editButton d-flex align-items-center justify-content-center">

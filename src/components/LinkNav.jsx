@@ -4,10 +4,13 @@ import { Search, HouseDoorFill, PeopleFill, SuitcaseLgFill, ChatDotsFill, BellFi
 import { Link, NavLink } from "react-router";
 import userPlace from "../assets/user.png";
 import search from "../assets/icons/search.svg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getProfile } from "../redux/action";
 
 function LinkNav() {
-  const currentProfile = useSelector((state) => state.profile.currentprofile);
+  const myProfile = useSelector((state) => state.profile.myprofile);
+
   return (
     <Navbar expand="lg" className="bg-white py-0 shadow-sm fixed-top">
       <Container className="myContainer2">
@@ -59,14 +62,14 @@ function LinkNav() {
                 <p className="pNav">Me</p>
                 <NavDropdown id="navbarScrollingDropdown">
                   <div className="p-3 ">
-                    {currentProfile && (
+                    {myProfile && (
                       <div className="d-flex align-items-center ">
                         <div>
-                          <img src={`${currentProfile.image}`} alt="currentProfileimage" className="img-fluid rounded-circle " style={{ width: "50px" }} />
+                          <img src={`${myProfile.image}`} alt="myProfileimage" className="img-fluid rounded-circle " style={{ width: "50px" }} />
                         </div>
                         <div className="ms-2">
-                          <p className="m-0 fs-6 fw-semibold">{`${currentProfile.name} ${currentProfile.surname}`}</p>
-                          <small className="m-0 "> {`${currentProfile.title}`}</small>
+                          <p className="m-0 fs-6 fw-semibold">{`${myProfile.name} ${myProfile.surname}`}</p>
+                          <small className="m-0 "> {`${myProfile.title}`}</small>
                         </div>
                       </div>
                     )}

@@ -9,23 +9,32 @@ import Experiences from "../components/Experiences";
 import ProfileInfo from "../components/ProfileInfo";
 import KnowPeople from "../components/KnowPeople";
 import Footer from "../components/Footer";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getMyProfile } from "../redux/action";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProfile } from "../redux/action";
+import { useParams } from "react-router";
 
 function Profile() {
   // const URL = import.meta.env.VITE_URL;
   // const MY_TOKEN = import.meta.env.MY_TOKEN;
-
-  const URL = "https://striveschool-api.herokuapp.com/api/profile/me";
-
+  const [isMyProfile, setIsMyProfile] = useState(true);
+  const myProfile = useSelector((state) => state.profile.myprofile);
+  const params = useParams();
   const dispatch = useDispatch();
-
+  const URL = `https://striveschool-api.herokuapp.com/api/profile/${params.id}`;
+  const rightProfile = () => {
+    if (myProfile._id === params.id) {
+      setIsMyProfile(true);
+    } else {
+      setIsMyProfile(false);
+    }
+  };
+  rightProfile();
   useEffect(() => {
     console.log(URL);
-    dispatch(getMyProfile(URL));
+    dispatch(getProfile(URL));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [params, myProfile]);
 
   return (
     <>
@@ -33,11 +42,11 @@ function Profile() {
       <Container className="myContainer">
         <Row className="marginForNav">
           <Col xs={9}>
-            <MainProfile />
-            <Suggestions />
-            <Analytics />
-            <Activities />
-            <Experiences />
+            <MainProfile isMyProfile={isMyProfile} />
+            <Suggestions isMyProfile={isMyProfile} />
+            {isMyProfile && <Analytics />}
+            <Activities isMyProfile={isMyProfile} />
+            <Experiences isMyProfile={isMyProfile} />
           </Col>
           <Col xs={3} className="customWidth">
             <ProfileInfo />

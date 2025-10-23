@@ -2,6 +2,7 @@ const MY_TOKEN = import.meta.env.VITE_MY_TOKEN;
 
 // const URL = import.meta.env.URL;
 export const TAKE_PROFILE = "TAKE_PROFILE";
+export const TAKE_MY_PROFILE = "TAKE_PROFILE";
 export const TAKE_ALL_PROFILES = "TAKE_ALL_PROFILES";
 export const TAKE_EXPERIENCES = "TAKE_EXPERIENCES";
 export const POST_EXPERIENCES = "POST_EXPERIENCES";
@@ -10,7 +11,7 @@ export const TAKE_POST = "TAKE_POST";
 
 // const URL = "https://striveschool-api.herokuapp.com/api/profile/me";
 
-export const getMyProfile = (url) => {
+export const getProfile = (url, type) => {
   return async (dispatchEvent, getState) => {
     console.log(getState());
     try {
@@ -25,7 +26,7 @@ export const getMyProfile = (url) => {
         // console.log(response);
         let profiledata = await response.json();
         console.log(profiledata);
-        dispatchEvent({ type: TAKE_PROFILE, payload: profiledata });
+        dispatchEvent({ type, payload: profiledata });
       } else {
         throw new Error("Fetch non riuscita");
       }

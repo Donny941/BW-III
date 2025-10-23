@@ -31,7 +31,12 @@ function Post({ post }) {
           {currentProfile && (
             <div className="d-flex align-items-center ">
               <div>
-                <img src={`${post.user.image}`} alt="postimage" className="img-fluid rounded-circle " style={{ width: "50px" }} />
+                <img
+                  src={`${post.user.image}`}
+                  alt="postimage"
+                  className="img-fluid rounded-circle "
+                  style={{ width: "50px", height: "50px,", objectFit: "cover" }}
+                />
               </div>
               <div className="ms-2 d-flex flex-column ">
                 <p className="m-0 fs-6 fw-semibold lh-sm">{`${post.user.name} ${post.user.surname}`}</p>
