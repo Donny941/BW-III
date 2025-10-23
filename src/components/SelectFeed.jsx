@@ -2,8 +2,8 @@ import { NavDropdown } from "react-bootstrap";
 
 function SelectFeed() {
   return (
-    <div className="d-flex justify-content-between align-items-center py-1">
-      <div className="w-50">
+    <div className="d-flex justify-content-between align-items-center py-1 px-2">
+      <div style={{ width: "63%" }}>
         <hr />
       </div>
       <div className="d-flex gap-1">

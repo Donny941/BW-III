@@ -6,6 +6,7 @@ export const TAKE_ALL_PROFILES = "TAKE_ALL_PROFILES";
 export const TAKE_EXPERIENCES = "TAKE_EXPERIENCES";
 export const POST_EXPERIENCES = "POST_EXPERIENCES";
 export const NEW_EXPERIENCES = "POST_EXPERIENCES";
+export const TAKE_POST = "TAKE_POST";
 
 // const URL = "https://striveschool-api.herokuapp.com/api/profile/me";
 
@@ -128,6 +129,36 @@ export const deleteExperiences = (url) => {
       });
       if (response.ok) {
         console.log("risposta", response);
+      } else {
+        throw new Error("Fetch non riuscita");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+// --------------------------------------------------------------------------------------------
+
+// get posts
+
+export const getPosts = (url, n1, n2) => {
+  return async (dispatch, getState) => {
+    console.log(getState());
+    try {
+      let response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer  ${MY_TOKEN}`,
+        },
+      });
+      if (response.ok) {
+        // console.log(response);
+        let postData = await response.json();
+        const slicedPosts = postData.slice(n1, n2);
+        console.log("post", slicedPosts);
+        dispatch({ type: TAKE_POST, payload: slicedPosts });
       } else {
         throw new Error("Fetch non riuscita");
       }

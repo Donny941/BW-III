@@ -49,7 +49,7 @@
 }
 
 .myBlue {
-  color: #0a66c2;
+  color: #0a66c2 !important;
 }
 
 .badgeCheck {
@@ -186,6 +186,9 @@ a:hover {
 .myContainer {
   max-width: 1200px;
 }
+.myContainer2 {
+  max-width: 1250px;
+}
 
 .footerLink {
   color: rgb(82, 82, 82);
@@ -246,4 +249,15 @@ a:hover {
 ul {
   list-style: none;
   font-size: 14px;
+}
+
+.buttonPost2 {
+  background-color: transparent;
+  border: none;
+  color: #272727ec;
+}
+.buttonPost2:hover {
+  background-color: #ebf4fd;
+  border: none;
+  color: black;
 }
