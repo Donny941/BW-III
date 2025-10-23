@@ -8,6 +8,7 @@ export const TAKE_EXPERIENCES = "TAKE_EXPERIENCES";
 export const POST_EXPERIENCES = "POST_EXPERIENCES";
 export const NEW_EXPERIENCES = "POST_EXPERIENCES";
 export const TAKE_POST = "TAKE_POST";
+export const TAKE_MY_POST = "TAKE_POST";
 
 // const URL = "https://striveschool-api.herokuapp.com/api/profile/me";
 
@@ -184,6 +185,54 @@ export const getPosts = (url, n1, n2) => {
         const slicedPosts = postData.slice(n1, n2);
         console.log("post", slicedPosts);
         dispatch({ type: TAKE_POST, payload: slicedPosts });
+      } else {
+        throw new Error("Fetch non riuscita");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const handlePost = (url, post, type) => {
+  return async () => {
+    try {
+      let response = await fetch(url, {
+        method: type,
+        body: JSON.stringify(post),
+
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer  ${MY_TOKEN}`,
+        },
+      });
+      if (response.ok) {
+        console.log("risposta ok", response);
+      } else {
+        throw new Error("Fetch non riuscita");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const getMyPost = (url) => {
+  return async (dispatch, getState) => {
+    console.log(getState());
+    try {
+      let response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer  ${MY_TOKEN}`,
+        },
+      });
+      if (response.ok) {
+        // console.log(response);
+        let postData = await response.json();
+
+        dispatch({ type: TAKE_MY_POST, payload: postData });
       } else {
         throw new Error("Fetch non riuscita");
       }

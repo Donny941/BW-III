@@ -1,6 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { ThreeDots, XLg, Plus, GlobeAmericasFill, HandThumbsUp, ChatText, ArrowDownUp, SendFill } from "react-bootstrap-icons";
+import { ThreeDots, XLg, Plus, GlobeAmericasFill, HandThumbsUp, ChatText, ArrowDownUp, SendFill, Pencil } from "react-bootstrap-icons";
 
 import like from "../assets/icons/emote/like.png";
 import love from "../assets/icons/emote/love.png";
@@ -11,21 +11,25 @@ import { Col, Row } from "react-bootstrap";
 
 function Post({ post }) {
   const currentProfile = useSelector((state) => state.profile.currentprofile);
+  const myProfile = useSelector((state) => state.profile.myprofile);
 
   return (
     <Card className="mb-2">
-      <div className="d-flex justify-content-between align-items-center py-2  px-3">
-        <small className="text-muted"> Suggested</small>
-        <div className="d-flex gap-4">
-          <ThreeDots />
-          <XLg />
-        </div>
-      </div>
+      {myProfile._id !== post.user._id && (
+        <>
+          <div className="d-flex justify-content-between align-items-center py-2  px-3">
+            <small className="text-muted"> Suggested</small>
+            <div className="d-flex gap-4">
+              <ThreeDots />
+              <XLg />
+            </div>
+          </div>
 
-      <div className="   px-3">
-        <hr className="m-0" />
-      </div>
-
+          <div className="   px-3">
+            <hr className="m-0" />
+          </div>
+        </>
+      )}
       <Card.Body className="p-0">
         <div className="d-flex justify-content-between p-3">
           {currentProfile && (
@@ -46,19 +50,28 @@ function Post({ post }) {
                   <GlobeAmericasFill className="text-muted " size={15} />
                 </div>
               </div>
+              <div>
+                {myProfile._id == post.user._id && (
+                  <div className="editButton2 position-absolute mt-3 me-3  d-flex align-items-center justify-content-center">
+                    <Pencil fontSize={20} />
+                  </div>
+                )}
+              </div>
             </div>
           )}
-          <div>
-            <Button className="buttonPost2 myBlue ">
-              <Plus size={25} /> <span className="align-bottom">Follow</span>
-            </Button>
-          </div>
+          {myProfile._id !== post.user._id && (
+            <div>
+              <Button className="buttonPost2 myBlue ">
+                <Plus size={25} /> <span className="align-bottom">Follow</span>
+              </Button>
+            </div>
+          )}
         </div>
 
         <div className=" px-3">
           <p>{post.text} </p>
         </div>
-        <img src={post.image} alt="" className="img-fluid" />
+        {post.image && <img src={post.image} style={{ width: "100%", height: "400px", objectFit: "cover" }} alt="" className="img-fluid" />}
         <div className="d-flex justify-content-between align-items-center py-2 ps-2 px-3">
           <div className="position-relative d-flex align-items-center">
             <img src={like} alt="emote" style={{ width: "15px" }} className=" position-absolute " />

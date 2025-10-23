@@ -31,7 +31,9 @@ function Profile() {
   };
 
   useEffect(() => {
-    rightProfile();
+    if (myProfile) {
+      rightProfile();
+    }
     console.log(URL);
     dispatch(getProfile(URL));
     // eslint-disable-next-line react-hooks/exhaustive-deps
