@@ -1,7 +1,7 @@
 import { Button, Container, Form, InputGroup, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import logo from "../assets/logo.svg";
 import { Search, HouseDoorFill, PeopleFill, SuitcaseLgFill, ChatDotsFill, BellFill, Grid3x3GapFill, PersonFillAdd } from "react-bootstrap-icons";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import userPlace from "../assets/user.png";
 import search from "../assets/icons/search.svg";
 import { useSelector } from "react-redux";
@@ -72,7 +72,7 @@ function LinkNav() {
                     )}
                     <div className="d-flex flex-column mt-3 gap-1">
                       <Button className="buttonOut  px-3 rounded-pill text-bold" size="sm">
-                        View profile
+                        <Link to="/profile">View profile</Link>
                       </Button>
                       <Button className="buttonFill  px-3 rounded-pill text-bold" size="sm">
                         Verify now

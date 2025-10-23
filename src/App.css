@@ -236,3 +236,14 @@ a:hover {
   border: none;
   color: black;
 }
+.puzzle:hover {
+  background-color: #e1e1e1;
+  cursor: pointer;
+}
+.card .rounded {
+  border-radius: 2.5rem !important;
+}
+ul {
+  list-style: none;
+  font-size: 14px;
+}

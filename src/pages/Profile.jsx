@@ -40,9 +40,9 @@ function Profile() {
           </Col>
           <Col xs={3} className="customWidth">
             <ProfileInfo />
-            <KnowPeople />
+            <KnowPeople people={7} />
           </Col>
-          <Footer />
+          <Footer display={true} />
         </Row>
       </Container>
     </>

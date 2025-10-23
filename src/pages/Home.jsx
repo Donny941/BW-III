@@ -15,6 +15,7 @@ import { getMyProfile } from "../redux/action";
 import HomeProfile from "../components/HomeProfile";
 import Items from "../components/Items";
 import SelectFeed from "../components/SelectFeed";
+import PuzzleGames from "../components/PuzzleGames";
 
 function Home() {
   const URL = "https://striveschool-api.herokuapp.com/api/profile/me";
@@ -40,10 +41,10 @@ function Home() {
             <SelectFeed />
           </Col>
           <Col xs={4} className="customWidth">
-            <ProfileInfo />
-            <KnowPeople />
+            <PuzzleGames />
+            <KnowPeople people={3} />
+            <Footer />
           </Col>
-          <Footer />
         </Row>
       </Container>
     </>

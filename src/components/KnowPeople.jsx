@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllProfiles } from "../redux/action";
 
-function KnowPeople() {
+function KnowPeople({ people }) {
   const allProfiles = useSelector((state) => state.allprofiles.profiles);
   const dispatch = useDispatch();
   const URL = "https://striveschool-api.herokuapp.com/api/profile/";
@@ -16,7 +16,7 @@ function KnowPeople() {
   let n2 = 0;
   const randomPeople = () => {
     n1 = Math.floor(Math.random() * 700);
-    n2 = n1 + 7;
+    n2 = n1 + people;
     return n1, n2;
   };
 
@@ -28,7 +28,7 @@ function KnowPeople() {
   }, []);
 
   return (
-    <Card className="mt-2 mb-5">
+    <Card className="mt-2 mb-2">
       <Card.Body className="border border-bottom border-tertiary">
         {" "}
         <div className="d-flex justify-content-between align-items-top">
@@ -54,7 +54,7 @@ function KnowPeople() {
                   </Button>
                 </div>
               </div>
-              {i !== 6 ? <hr /> : null}
+              {i !== people - 1 ? <hr /> : null}
             </div>
           );
         })}
