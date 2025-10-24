@@ -3,8 +3,9 @@ import { Pencil, PlusLg, Trash2Fill } from "react-bootstrap-icons";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { deleteExperiences, getExperiences } from "../redux/action";
+import { getExperiences } from "../redux/action";
 import ExperiencesModal from "./ExperiencesModal";
+import DeleteModal from "./DeleteModal";
 
 function Experiences({ isMyProfile }) {
   const [experience, setExperience] = useState(null);
@@ -25,19 +26,12 @@ function Experiences({ isMyProfile }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
-  const handleDelete = (id) => {
-    const URL_DELETE = ` https://striveschool-api.herokuapp.com/api/profile/${userId._id}/experiences/${id} `;
-    dispatch(deleteExperiences(URL_DELETE));
-
-    setTimeout(() => {
-      const URL_GET = `https://striveschool-api.herokuapp.com/api/profile/${userId._id}/experiences`;
-      dispatch(getExperiences(URL_GET));
-    }, 1000);
-  };
-
   const handleEdit = (experience) => {
     setExperience(experience);
   };
+
+  // modale
+  const [show, setShow] = useState(false);
 
   return (
     <Card className="mt-2 mb-5">
@@ -88,8 +82,10 @@ function Experiences({ isMyProfile }) {
                 <small className="text-muted">{`${startDate}-${endDate}`}</small>
               </div>
 
+              <DeleteModal show={show} setShow={setShow} experience={experience} />
+
               {isMyProfile && (
-                <div onClick={() => handleDelete(experience._id)} className="ms-auto editButton2   d-flex align-items-center justify-content-center">
+                <div onClick={() => setShow(true)} className="ms-auto editButton2   d-flex align-items-center justify-content-center">
                   <Trash2Fill className="text-muted" fontSize={20} />
                 </div>
               )}

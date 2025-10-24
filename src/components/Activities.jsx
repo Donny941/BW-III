@@ -3,16 +3,19 @@ import { EyeFill, PeopleFill, BarChartLineFill, Search, ArrowRight, Pencil } fro
 
 import { Button, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getMyPost } from "../redux/action";
 import Post from "./Post";
 import Slider from "react-slick";
+import PostModal from "./PostModal";
 
-function Activities() {
+function Activities({ params }) {
   const myProfile = useSelector((state) => state.profile.myprofile);
   const posts = useSelector((state) => state.posts.post);
   const dispatch = useDispatch();
   const URL = "https://striveschool-api.herokuapp.com/api/posts/";
+  const [modalShow, setModalShow] = useState(false);
+  console.log("paramssss", params);
 
   useEffect(() => {
     dispatch(getMyPost(URL));
@@ -41,21 +44,24 @@ function Activities() {
           </div>
           <div className="d-flex gap-2 align-items-top position-relative">
             <div>
-              <Button className="buttonOut me-5 px-3 rounded-pill text-bold" size="sm">
+              <Button className="buttonOut me-5 px-3 rounded-pill text-bold" size="sm" onClick={() => setModalShow(true)}>
                 Create a post
               </Button>
+              <PostModal show={modalShow} setModalShow={setModalShow} />
             </div>
           </div>
         </div>
-        <div className="slider-container p-5">
-          <Slider {...settings}>
-            {myPost.map((post) => (
-              <div>
-                <Post key={post._id} post={post} />
-              </div>
-            ))}
-          </Slider>
-        </div>
+        {myProfile && params.id === myProfile._id && (
+          <div className="slider-container p-5">
+            <Slider {...settings}>
+              {myPost.map((post) => (
+                <div>
+                  <Post key={post._id} post={post} />
+                </div>
+              ))}
+            </Slider>
+          </div>
+        )}
       </Card.Body>
       <Button className="rounded-0 rounded-bottom btnCard  fw-semibold" variant="light">
         Show all activity <ArrowRight />{" "}

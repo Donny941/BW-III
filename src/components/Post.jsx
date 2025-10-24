@@ -1,6 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { ThreeDots, XLg, Plus, GlobeAmericasFill, HandThumbsUp, ChatText, ArrowDownUp, SendFill, Pencil } from "react-bootstrap-icons";
+import { ThreeDots, XLg, Plus, GlobeAmericasFill, HandThumbsUp, ChatText, ArrowDownUp, SendFill, Pencil, Trash2Fill } from "react-bootstrap-icons";
 
 import like from "../assets/icons/emote/like.png";
 import love from "../assets/icons/emote/love.png";
@@ -10,12 +10,13 @@ import { useSelector } from "react-redux";
 import { Col, Row } from "react-bootstrap";
 import { useState } from "react";
 import PostModal from "./PostModal";
+import DeleteModal from "./DeleteModal";
 
 function Post({ post }) {
   const currentProfile = useSelector((state) => state.profile.currentprofile);
   const myProfile = useSelector((state) => state.profile.myprofile);
   const [modalShow, setModalShow] = useState(false);
-
+  const [show, setShow] = useState(false);
   return (
     <Card className="mb-2">
       {myProfile._id !== post.user._id && (
@@ -55,11 +56,19 @@ function Post({ post }) {
               </div>
               <div>
                 <PostModal show={modalShow} actualPost={post} setModalShow={setModalShow} />
-
+                <DeleteModal show={show} actualPost={post} setShow={setShow} />
                 {myProfile._id == post.user._id && (
-                  <div onClick={() => setModalShow(true)} className="editButton2 position-absolute mt-3 me-3  d-flex align-items-center justify-content-center">
-                    <Pencil fontSize={20} />
-                  </div>
+                  <>
+                    <div
+                      onClick={() => setModalShow(true)}
+                      className="editButton2 position-absolute mt-3 me-3  d-flex align-items-center justify-content-center"
+                    >
+                      <Pencil fontSize={20} />
+                    </div>
+                    <div onClick={() => setShow(true)} className="position-absolute mt-3 me-5 editButton2   d-flex align-items-center justify-content-center">
+                      <Trash2Fill className="text-muted" fontSize={20} />
+                    </div>
+                  </>
                 )}
               </div>
             </div>

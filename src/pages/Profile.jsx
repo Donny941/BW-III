@@ -48,7 +48,7 @@ function Profile() {
             <MainProfile isMyProfile={isMyProfile} />
             <Suggestions isMyProfile={isMyProfile} />
             {isMyProfile && <Analytics />}
-            <Activities isMyProfile={isMyProfile} />
+            <Activities params={params} isMyProfile={isMyProfile} />
             <Experiences isMyProfile={isMyProfile} />
           </Col>
           <Col xs={3} className="customWidth">

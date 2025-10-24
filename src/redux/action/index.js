@@ -286,3 +286,27 @@ export const createPostWithImage = (url, postText, imageFile) => {
     }
   };
 };
+
+export const deletePost = (url) => {
+  return async (dispatch) => {
+    try {
+      let response = await fetch(url, {
+        method: "DELETE",
+
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer  ${MY_TOKEN}`,
+        },
+      });
+      if (response.ok) {
+        console.log("risposta", response);
+        const URL_POSTS = "https://striveschool-api.herokuapp.com/api/posts/";
+        dispatch(getMyPost(URL_POSTS));
+      } else {
+        throw new Error("Fetch non riuscita");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
