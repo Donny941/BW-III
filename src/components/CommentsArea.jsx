@@ -6,8 +6,13 @@ import { getComments } from "../redux/action";
 
 const CommentArea = ({ post }) => {
   const myProfile = useSelector((state) => state.profile.myprofile);
+  const commentPost = useSelector((state) => state.comments.comments);
 
   const dispatch = useDispatch();
+
+  const postComments = commentPost ? commentPost.filter((commento) => post._id === commento.elementId) : [];
+
+  console.log(postComments);
 
   useEffect(() => {
     let URL_COMMENTS = `https://striveschool-api.herokuapp.com/api/comments/`;
@@ -31,23 +36,26 @@ const CommentArea = ({ post }) => {
         </Form>
       </div>
 
-      {/* <div className="d-flex align-items-center ">
-        <div>
-          <img
+      {postComments.map((commento) => (
+        <div className="p-3">
+          <div className="d-flex align-items-center ">
+            <div>
+              {/* <img
             src={`${post.user.image}`}
             alt="postimage"
             className="img-fluid rounded-circle "
             style={{ width: "50px", height: "50px,", objectFit: "cover" }}
-          />
+          /> */}
+            </div>
+            <div className=" d-flex align-items-center justify-content-between">
+              <p className="m-0 fs-5 fw-semibold lh-sm">{commento.author}</p>
+
+              <p className="m-0 lh-sm"> {commento.createdAt.split("T")[0]}</p>
+            </div>
+          </div>{" "}
+          <p>{commento.comment}</p>
         </div>
-        <div className="ms-2 d-flex flex-column ">
-          <p className="m-0 fs-6 fw-semibold lh-sm">{`${post.user.name} ${post.user.surname}`}</p>
-          <small className="m-0 offset-5 lh-sm"> {`${post.user.title}`}</small>
-          <div className="lh-sm">
-            <small className="m-0 lh-sm ">{post.createdAt} • </small>
-          </div>
-        </div>
-      </div> */}
+      ))}
     </>
   );
 };
