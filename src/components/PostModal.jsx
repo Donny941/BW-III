@@ -2,11 +2,12 @@ import { Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { handlePost } from "../redux/action";
+import { createPostWithImage, handlePost } from "../redux/action";
+import { useState } from "react";
 
-function PostModal({ show, setModalShow }) {
+function PostModal({ show, setModalShow, actualPost }) {
   const myProfile = useSelector((state) => state.profile.myprofile);
-
+  const [file, setFile] = useState(null);
   const dispatch = useDispatch();
   const URL = "https://striveschool-api.herokuapp.com/api/posts/";
   const handleSubmit = (event) => {
@@ -16,7 +17,15 @@ function PostModal({ show, setModalShow }) {
 
     const formValues = Object.fromEntries(formData);
     console.log("values", formValues);
-    dispatch(handlePost(URL, formValues, "POST"));
+
+    if (actualPost) {
+      const URL_POST = `https://striveschool-api.herokuapp.com/api/posts/${actualPost._id}`;
+      dispatch(handlePost(URL_POST, { text: formValues.text }, "PUT"));
+    } else {
+      dispatch(createPostWithImage(URL, { text: formValues.text }, file));
+    }
+    setFile(null);
+    setModalShow(false);
   };
 
   return (
@@ -44,16 +53,23 @@ function PostModal({ show, setModalShow }) {
                 as="textarea"
                 type="text"
                 name="text"
-                // defaultValue={formData.description}
+                defaultValue={actualPost ? actualPost.text : ""}
                 placeholder="What do you want to talk about?"
                 required
               />
             </Form.Group>
-            <Form.Group md="4" controlId="validationCustom02">
-              <Form.Label className="text-muted">Image</Form.Label>
-              <Form.Control required type="text" name="image" placeholder="http//...." />
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </Form.Group>
+            {!actualPost && (
+              <Form.Group md="4" controlId="validationCustomFile" className="mt-3">
+                <Form.Label className="text-muted">Upload Image</Form.Label>
+                <Form.Control type="file" accept="image/*" onChange={(e) => setFile(e.target.files[0])} />
+              </Form.Group>
+            )}
+            {actualPost && (
+              <Form.Group md="4" controlId="validationCustomImage" className="mt-3">
+                <Form.Label className="text-muted">Image (URL attuale)</Form.Label>
+                <Form.Control required defaultValue={actualPost ? actualPost.image : ""} type="text" name="image" readOnly placeholder="http//...." />
+              </Form.Group>
+            )}
             <Modal.Footer className="mt-4">
               <Button type="submit" className="buttonFill mt-3  px-3 rounded-pill text-bold" onClick={() => setModalShow(false)}>
                 Save Changes

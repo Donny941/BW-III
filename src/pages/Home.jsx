@@ -7,7 +7,7 @@ import Footer from "../components/Footer";
 import NewPost from "../components/NewPost";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProfile, getPosts, TAKE_PROFILE } from "../redux/action";
+import { getProfile, getPosts } from "../redux/action";
 import HomeProfile from "../components/HomeProfile";
 import Items from "../components/Items";
 import SelectFeed from "../components/SelectFeed";

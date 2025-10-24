@@ -195,12 +195,11 @@ export const getPosts = (url, n1, n2) => {
 };
 
 export const handlePost = (url, post, type) => {
-  return async () => {
+  return async (dispatch) => {
     try {
       let response = await fetch(url, {
         method: type,
         body: JSON.stringify(post),
-
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer  ${MY_TOKEN}`,
@@ -208,6 +207,8 @@ export const handlePost = (url, post, type) => {
       });
       if (response.ok) {
         console.log("risposta ok", response);
+        const URL_POSTS = "https://striveschool-api.herokuapp.com/api/posts/";
+        dispatch(getMyPost(URL_POSTS));
       } else {
         throw new Error("Fetch non riuscita");
       }
@@ -236,6 +237,50 @@ export const getMyPost = (url) => {
       } else {
         throw new Error("Fetch non riuscita");
       }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const createPostWithImage = (url, postText, imageFile) => {
+  return async (dispatch) => {
+    try {
+      let response = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(postText),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${MY_TOKEN}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Errore nella creazione del post");
+      }
+
+      let newPost = await response.json();
+      let postId = newPost._id;
+
+      if (imageFile) {
+        const formData = new FormData();
+        formData.append("post", imageFile);
+
+        let imgResponse = await fetch(`${url}${postId}`, {
+          method: "POST",
+          body: formData,
+          headers: {
+            Authorization: `Bearer ${MY_TOKEN}`,
+          },
+        });
+
+        if (!imgResponse.ok) {
+          throw new Error("Errore caricamentodell'immagine ");
+        }
+      }
+
+      dispatch(getMyPost(url));
+      dispatch(getPosts(url, 0, 10));
     } catch (err) {
       console.log(err);
     }

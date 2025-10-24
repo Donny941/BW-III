@@ -8,10 +8,13 @@ import insightful from "../assets/icons/emote/insightful.png";
 
 import { useSelector } from "react-redux";
 import { Col, Row } from "react-bootstrap";
+import { useState } from "react";
+import PostModal from "./PostModal";
 
 function Post({ post }) {
   const currentProfile = useSelector((state) => state.profile.currentprofile);
   const myProfile = useSelector((state) => state.profile.myprofile);
+  const [modalShow, setModalShow] = useState(false);
 
   return (
     <Card className="mb-2">
@@ -51,8 +54,10 @@ function Post({ post }) {
                 </div>
               </div>
               <div>
+                <PostModal show={modalShow} actualPost={post} setModalShow={setModalShow} />
+
                 {myProfile._id == post.user._id && (
-                  <div className="editButton2 position-absolute mt-3 me-3  d-flex align-items-center justify-content-center">
+                  <div onClick={() => setModalShow(true)} className="editButton2 position-absolute mt-3 me-3  d-flex align-items-center justify-content-center">
                     <Pencil fontSize={20} />
                   </div>
                 )}
