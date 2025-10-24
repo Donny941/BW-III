@@ -23,7 +23,7 @@ function Home() {
   let n1 = 0;
   let n2 = 0;
   const randomPost = () => {
-    n1 = Math.floor(Math.random() * 2400);
+    n1 = Math.floor(Math.random() * 200);
     n2 = n1 + 10;
     return n1, n2;
   };

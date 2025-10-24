@@ -8,7 +8,7 @@ export const TAKE_EXPERIENCES = "TAKE_EXPERIENCES";
 export const POST_EXPERIENCES = "POST_EXPERIENCES";
 export const NEW_EXPERIENCES = "POST_EXPERIENCES";
 export const TAKE_POST = "TAKE_POST";
-export const TAKE_MY_POST = "TAKE_POST";
+export const TAKE_MY_POST = "TAKE_MY_POST";
 
 // const URL = "https://striveschool-api.herokuapp.com/api/profile/me";
 
