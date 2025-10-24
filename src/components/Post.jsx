@@ -11,6 +11,7 @@ import { Col, Row } from "react-bootstrap";
 import { useState } from "react";
 import PostModal from "./PostModal";
 import DeleteModal from "./DeleteModal";
+import CommentArea from "./CommentsArea";
 
 function Post({ post }) {
   const currentProfile = useSelector((state) => state.profile.currentprofile);
@@ -131,6 +132,7 @@ function Post({ post }) {
           </Button>
         </Col>
       </Row>
+      <CommentArea post={post} />
     </Card>
   );
 }

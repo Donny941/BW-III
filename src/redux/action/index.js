@@ -1,4 +1,5 @@
 const MY_TOKEN = import.meta.env.VITE_MY_TOKEN;
+const MY_TOKEN_COMMENTS = import.meta.env.VITE_MY_TOKEN_COMMENTS;
 
 // const URL = import.meta.env.URL;
 export const TAKE_PROFILE = "TAKE_PROFILE";
@@ -9,6 +10,7 @@ export const POST_EXPERIENCES = "POST_EXPERIENCES";
 export const NEW_EXPERIENCES = "POST_EXPERIENCES";
 export const TAKE_POST = "TAKE_POST";
 export const TAKE_MY_POST = "TAKE_MY_POST";
+export const TAKE_COMMENTS = "TAKE_COMMENTS";
 
 // const URL = "https://striveschool-api.herokuapp.com/api/profile/me";
 
@@ -302,6 +304,33 @@ export const deletePost = (url) => {
         console.log("risposta", response);
         const URL_POSTS = "https://striveschool-api.herokuapp.com/api/posts/";
         dispatch(getMyPost(URL_POSTS));
+      } else {
+        throw new Error("Fetch non riuscita");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+// comment action
+export const getComments = (url) => {
+  return async (dispatch, getState) => {
+    console.log(getState());
+    try {
+      let response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer  ${MY_TOKEN}`,
+        },
+      });
+      if (response.ok) {
+        // console.log(response);
+        let commentsData = await response.json();
+        console.log("commenti forse", commentsData);
+
+        dispatch({ type: TAKE_COMMENTS, payload: commentsData });
       } else {
         throw new Error("Fetch non riuscita");
       }

@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteExperiences, getExperiences } from "../redux/action";
+import { deleteExperiences, deletePost, getExperiences } from "../redux/action";
 
 function DeleteModal({ show, setShow, experience, actualPost }) {
   const handleClose = () => setShow(false);
@@ -18,7 +18,7 @@ function DeleteModal({ show, setShow, experience, actualPost }) {
   };
   const handleDeletePost = () => {
     const URL_DELETE = ` https://striveschool-api.herokuapp.com/api/posts/${actualPost._id} `;
-    dispatch(deleteExperiences(URL_DELETE));
+    dispatch(deletePost(URL_DELETE));
     handleClose();
   };
 
