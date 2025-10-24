@@ -1,6 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { ThreeDots, XLg, Plus, GlobeAmericasFill, HandThumbsUp, ChatText, ArrowDownUp, SendFill, Pencil, Trash2Fill } from "react-bootstrap-icons";
+import { ThreeDots, XLg, Plus, GlobeAmericasFill, HandThumbsUp, ChatText, ArrowDownUp, SendFill, Pencil, Trash2Fill, Link } from "react-bootstrap-icons";
 
 import like from "../assets/icons/emote/like.png";
 import love from "../assets/icons/emote/love.png";
@@ -49,7 +49,11 @@ function Post({ post }) {
                 />
               </div>
               <div className="ms-2 d-flex flex-column ">
-                <p className="m-0 fs-6 fw-semibold lh-sm">{`${post.user.name} ${post.user.surname}`}</p>
+                <p className="m-0 fs-6 fw-semibold lh-sm">
+                  {" "}
+                  <Link to={`/profile/${post.user._id}`}>{`${post.user.name} ${post.user.surname}`}</Link>
+                </p>
+
                 <small className="m-0 offset-5 lh-sm"> {`${post.user.title}`}</small>
                 <div className="lh-sm">
                   <small className="m-0 lh-sm ">{post.createdAt} • </small>
