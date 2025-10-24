@@ -18,9 +18,10 @@ function Post({ post }) {
   const myProfile = useSelector((state) => state.profile.myprofile);
   const [modalShow, setModalShow] = useState(false);
   const [show, setShow] = useState(false);
+  const [showComment, setShowComment] = useState(false);
   return (
     <Card className="mb-2">
-      {myProfile._id !== post.user._id && (
+      {myProfile && myProfile._id !== post.user._id && (
         <>
           <div className="d-flex justify-content-between align-items-center py-2  px-3">
             <small className="text-muted"> Suggested</small>
@@ -58,7 +59,7 @@ function Post({ post }) {
               <div>
                 <PostModal show={modalShow} actualPost={post} setModalShow={setModalShow} />
                 <DeleteModal show={show} actualPost={post} setShow={setShow} />
-                {myProfile._id == post.user._id && (
+                {myProfile && myProfile._id == post.user._id && (
                   <>
                     <div
                       onClick={() => setModalShow(true)}
@@ -114,7 +115,7 @@ function Post({ post }) {
           </Button>
         </Col>
         <Col className="d-flex justify-content-center">
-          <Button className="buttonPost  fw-semibold " size="sm">
+          <Button className="buttonPost  fw-semibold " onClick={() => setShowComment(!showComment)} size="sm">
             {" "}
             <ChatText /> <span className="align-middle">Comment</span>
           </Button>
@@ -132,7 +133,7 @@ function Post({ post }) {
           </Button>
         </Col>
       </Row>
-      <CommentArea post={post} />
+      {showComment && <CommentArea post={post} />}
     </Card>
   );
 }

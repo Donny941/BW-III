@@ -170,7 +170,7 @@ export const deleteExperiences = (url) => {
 
 // get posts
 
-export const getPosts = (url, n1, n2) => {
+export const getPosts = (url) => {
   return async (dispatch, getState) => {
     console.log(getState());
     try {
@@ -184,9 +184,15 @@ export const getPosts = (url, n1, n2) => {
       if (response.ok) {
         // console.log(response);
         let postData = await response.json();
-        const slicedPosts = postData.slice(n1, n2);
-        console.log("post", slicedPosts);
-        dispatch({ type: TAKE_POST, payload: slicedPosts });
+
+        let length = postData.length;
+        console.log(length);
+
+        let startSlice = length - 30;
+
+        let payloadPost = postData.slice(startSlice, length);
+
+        dispatch({ type: TAKE_POST, payload: payloadPost });
       } else {
         throw new Error("Fetch non riuscita");
       }
@@ -322,7 +328,7 @@ export const getComments = (url) => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer  ${MY_TOKEN}`,
+          Authorization: `Bearer  ${MY_TOKEN_COMMENTS}`,
         },
       });
       if (response.ok) {
@@ -331,6 +337,30 @@ export const getComments = (url) => {
         console.log("commenti forse", commentsData);
 
         dispatch({ type: TAKE_COMMENTS, payload: commentsData });
+      } else {
+        throw new Error("Fetch non riuscita");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const postComment = (url, post) => {
+  return async (dispatch) => {
+    try {
+      let response = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(post),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer  ${MY_TOKEN_COMMENTS}`,
+        },
+      });
+      if (response.ok) {
+        console.log("risposta ok", response);
+        const URL_COM = "https://striveschool-api.herokuapp.com/api/comments/";
+        dispatch(getComments(URL_COM));
       } else {
         throw new Error("Fetch non riuscita");
       }

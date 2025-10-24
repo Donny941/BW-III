@@ -20,22 +20,16 @@ function Home() {
   const posts = useSelector((state) => state.posts.allposts);
   const dispatch = useDispatch();
 
-  let n1 = 0;
-  let n2 = 0;
-  const randomPost = () => {
-    n1 = Math.floor(Math.random() * 200);
-    n2 = n1 + 10;
-    return n1, n2;
-  };
-
-  randomPost();
-
   useEffect(() => {
-    console.log(URL);
     dispatch(getProfile(URL, "TAKE_PROFILE"));
-    dispatch(getPosts(URL_POST, n1, n2));
+    dispatch(getPosts(URL_POST));
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (posts) {
+    console.log(posts);
+  }
 
   return (
     <>
