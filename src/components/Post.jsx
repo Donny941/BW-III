@@ -1,6 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { ThreeDots, XLg, Plus, GlobeAmericasFill, HandThumbsUp, ChatText, ArrowDownUp, SendFill, Pencil, Trash2Fill, Link } from "react-bootstrap-icons";
+import { ThreeDots, XLg, Plus, GlobeAmericasFill, HandThumbsUp, ChatText, ArrowDownUp, SendFill, Pencil, Trash2Fill } from "react-bootstrap-icons";
 
 import like from "../assets/icons/emote/like.png";
 import love from "../assets/icons/emote/love.png";
@@ -12,6 +12,7 @@ import { useState } from "react";
 import PostModal from "./PostModal";
 import DeleteModal from "./DeleteModal";
 import CommentArea from "./CommentsArea";
+import { Link } from "react-router";
 
 function Post({ post }) {
   const currentProfile = useSelector((state) => state.profile.currentprofile);
