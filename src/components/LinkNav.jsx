@@ -2,7 +2,7 @@ import { Button, Container, Form, InputGroup, Nav, Navbar, NavDropdown } from "r
 import logo from "../assets/logo.svg";
 import { HouseDoorFill, PeopleFill, SuitcaseLgFill, ChatDotsFill, BellFill, Grid3x3GapFill, PersonFillAdd } from "react-bootstrap-icons";
 import { Link, NavLink } from "react-router";
-import userPlace from "../assets/user.png";
+
 import search from "../assets/icons/search.svg";
 import { useSelector } from "react-redux";
 
@@ -55,7 +55,7 @@ function LinkNav() {
               </div>
             </NavLink>
             <div className="d-flex flex-column justify-content-center align-items-center">
-              <img src={userPlace} alt="" className="img-fluid rounded-circle mt-1" style={{ width: "22px" }} />
+              {myProfile !== null && <img src={`${myProfile.image}`} alt="" className="img-fluid rounded-circle mt-1" style={{ width: "22px" }} />}
               <div className="d-flex gap-1">
                 <p className="pNav">Me</p>
                 <NavDropdown id="navbarScrollingDropdown">
